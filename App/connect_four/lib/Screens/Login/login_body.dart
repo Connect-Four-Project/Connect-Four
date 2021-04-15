@@ -5,8 +5,8 @@ import 'package:connect_four/components/rounded_input_field.dart';
 import 'package:connect_four/components/rounded_password_field.dart';
 import 'package:flutter/material.dart';
 
-class Body extends StatelessWidget {
-  const Body({
+class LoginBody extends StatelessWidget {
+  const LoginBody({
     Key key,
   }) : super(key: key);
 

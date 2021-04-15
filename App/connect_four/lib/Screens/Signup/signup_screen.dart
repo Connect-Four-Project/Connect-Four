@@ -1,11 +1,6 @@
-import 'package:flutter/material.dart';
-import 'body.dart';
+import 'package:connect_four/background/background_widget.dart';
+import 'signup_body.dart';
 
-class SignUpScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Body(),
-    );
-  }
+class SignUpScreen extends MyDynamicStateful {
+  SignUpScreen() : super(statelessWidget: SignUpBody(), moveFromUpToDown: true);
 }

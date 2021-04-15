@@ -4,7 +4,7 @@ import 'package:connect_four/Screens/Login/login_screen.dart';
 import 'package:connect_four/components/rounded_button.dart';
 import 'package:flutter_svg/svg.dart';
 
-class Body extends StatelessWidget {
+class WelcomeBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;

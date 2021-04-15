@@ -3,24 +3,24 @@ import 'dynamic_background.dart';
 
 abstract class MyDynamicStateful extends StatefulWidget {
   MyDynamicStateful(
-      {Key key, this.title, @required this.statelessWidget, this.startState})
+      {Key key, this.title, @required this.statelessWidget, this.moveFromUpToDown})
       : super(key: key);
   final String title;
   final StatelessWidget statelessWidget;
-  final bool startState;
+  final bool moveFromUpToDown;
 
   @override
   BackgroundState createState() =>
-      BackgroundState(statelessWidget: statelessWidget, startState: startState);
+      BackgroundState(statelessWidget: statelessWidget, startState: moveFromUpToDown);
 }
 
 class BackgroundState extends State<MyDynamicStateful>
     with SingleTickerProviderStateMixin {
   final StatelessWidget statelessWidget;
+  final bool startState;
   AnimationController animationController;
-  bool startState = false;
 
-  BackgroundState({@required this.statelessWidget, bool startState});
+  BackgroundState({@required this.statelessWidget, this.startState});
 
   @override
   void initState() {
