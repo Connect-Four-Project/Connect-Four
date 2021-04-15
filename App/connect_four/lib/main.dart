@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'Screens/Welcome/welcome_screen.dart';
 import 'constants/constants.dart';
+import 'dart:math';
+import 'dart:ui';
+
+import 'package:flutter/cupertino.dart';
 
 void main() => runApp(ConnectFourApp());
 
@@ -15,7 +18,267 @@ class ConnectFourApp extends StatelessWidget {
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: WelcomeScreen(),
+      home: MyHomePage(
+        title: 'Flutter Demo Home Page',
+      ),
+      // WelcomeScreen(),
     );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({Key key, this.title}) : super(key: key);
+  final String title;
+
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+
+  @override
+  void initState() {
+    animationController =
+        AnimationController(vsync: this, duration: Duration(seconds: 2));
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Scaffold(
+      body: Stack(
+        children: [
+          SizedBox.expand(
+            child: CustomPaint(
+              painter: BackgroundPainter(animation: animationController.view),
+            ),
+          ),
+          Column(
+            children: [
+              Text(
+                "WELCOME TO CONNECT FOUR",
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  animationController.forward();
+                },
+                child: Text("press"),
+              ),
+              RaisedButton(
+                onPressed: () {
+                  animationController.reverse();
+                },
+                child: Text("reverse"),
+              ),
+            ],
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class BackgroundPainter extends CustomPainter {
+  BackgroundPainter({Animation<double> animation})
+      : bluePaint = Paint()
+          ..color = Color(0xFF6F35A5)
+          ..style = PaintingStyle.fill,
+        greyPaint = Paint()
+          ..color = Color(0xFFF1E6FF)
+          ..style = PaintingStyle.fill,
+        orangePaint = Paint()
+          ..color = Color(0xFF8057AA)
+          ..style = PaintingStyle.fill,
+        linePaint = Paint()
+          ..color = Color(0xffCC7700)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 4,
+        liquidAnim = CurvedAnimation(
+          curve: Curves.elasticOut,
+          reverseCurve: Curves.easeInBack,
+          parent: animation,
+        ),
+        orangeAnim = CurvedAnimation(
+          parent: animation,
+          curve: const Interval(
+            0,
+            0.7,
+            curve: Interval(0, 0.8, curve: SpringCurve()),
+          ),
+          reverseCurve: Curves.linear,
+        ),
+        greyAnim = CurvedAnimation(
+          parent: animation,
+          curve: const Interval(0, 0.8,
+              curve: Interval(0, 0.9, curve: SpringCurve())),
+          reverseCurve: Curves.easeInCirc,
+        ),
+        blueAnim = CurvedAnimation(
+          parent: animation,
+          curve: const SpringCurve(),
+          reverseCurve: Curves.easeInCirc,
+        ),
+        super(repaint: animation);
+
+  final Animation<double> liquidAnim;
+  final Animation<double> blueAnim;
+  final Animation<double> greyAnim;
+  final Animation<double> orangeAnim;
+
+  final Paint linePaint;
+  final Paint bluePaint;
+  final Paint greyPaint;
+  final Paint orangePaint;
+
+  void paintBlue(Size size, Canvas canvas) {
+    final path = Path();
+    path.moveTo(size.width, size.height / 2);
+    path.lineTo(size.width, 0);
+    path.lineTo(0, 0);
+    path.lineTo(
+      0,
+      lerpDouble(0, size.height, blueAnim.value),
+    );
+    addPointsToPath(path, [
+      Point(
+        lerpDouble(0, size.width / 3, blueAnim.value),
+        lerpDouble(0, size.height, blueAnim.value),
+      ),
+      Point(
+        lerpDouble(size.width / 2, size.width / 4 * 3, liquidAnim.value),
+        lerpDouble(size.height / 2, size.height / 4 * 3, liquidAnim.value),
+      ),
+      Point(
+        size.width,
+        lerpDouble(size.height / 2, size.height * 3 / 4, liquidAnim.value),
+      ),
+    ]);
+    canvas.drawPath(path, bluePaint);
+  }
+
+  void paintGrey(Size size, Canvas canvas) {
+    final path = Path();
+    path.moveTo(size.width, 300);
+    path.lineTo(size.width, 0);
+    path.lineTo(0, 0);
+    path.lineTo(
+      0,
+      lerpDouble(
+        size.height / 4,
+        size.height / 2,
+        greyAnim.value,
+      ),
+    );
+    addPointsToPath(
+      path,
+      [
+        Point(
+          size.width / 4,
+          lerpDouble(size.height / 2, size.height * 3 / 4, liquidAnim.value),
+        ),
+        Point(
+          size.width * 3 / 5,
+          lerpDouble(size.height / 4, size.height / 2, liquidAnim.value),
+        ),
+        Point(
+          size.width * 4 / 5,
+          lerpDouble(size.height / 6, size.height / 3, greyAnim.value),
+        ),
+        Point(
+          size.width,
+          lerpDouble(size.height / 5, size.height / 4, greyAnim.value),
+        ),
+      ],
+    );
+
+    canvas.drawPath(path, greyPaint);
+  }
+
+  void paintOrange(Size size, Canvas canvas) {
+    if (orangeAnim.value > 0) {
+      final path = Path();
+
+      path.moveTo(size.width * 3 / 4, 0);
+      path.lineTo(0, 0);
+      path.lineTo(
+        0,
+        lerpDouble(0, size.height / 12, orangeAnim.value),
+      );
+
+      addPointsToPath(path, [
+        Point(
+          size.width / 7,
+          lerpDouble(0, size.height / 6, liquidAnim.value),
+        ),
+        Point(
+          size.width / 3,
+          lerpDouble(0, size.height / 10, liquidAnim.value),
+        ),
+        Point(
+          size.width / 3 * 2,
+          lerpDouble(0, size.height / 8, liquidAnim.value),
+        ),
+        Point(
+          size.width * 3 / 4,
+          0,
+        ),
+      ]);
+
+      canvas.drawPath(path, orangePaint);
+    }
+  }
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    paintBlue(size, canvas);
+
+    paintGrey(size, canvas);
+
+    paintOrange(size, canvas);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return true;
+  }
+
+  void addPointsToPath(Path path, List<Point> points) {
+    for (var i = 0; i < points.length - 2; i++) {
+      final xc = (points[i].x + points[i + 1].x) / 2;
+      final yc = (points[i].y + points[i + 1].y) / 2;
+      path.quadraticBezierTo(points[i].x, points[i].y, xc, yc);
+    }
+
+    path.quadraticBezierTo(
+        points[points.length - 2].x,
+        points[points.length - 2].y,
+        points[points.length - 1].x,
+        points[points.length - 1].y);
+  }
+}
+
+class Point {
+  final double x;
+  final double y;
+
+  Point(this.x, this.y);
+}
+
+class SpringCurve extends Curve {
+  const SpringCurve({
+    this.a = 0.15,
+    this.w = 19.4,
+  });
+
+  final double a;
+  final double w;
+
+  @override
+  double transformInternal(double t) {
+    return (-(pow(e, -t / a) * cos(t * w)) + 1).toDouble();
   }
 }

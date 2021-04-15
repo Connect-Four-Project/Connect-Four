@@ -5,7 +5,6 @@ import 'package:connect_four/components/rounded_button.dart';
 import 'package:connect_four/components/rounded_input_field.dart';
 import 'package:connect_four/components/rounded_password_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 class Body extends StatelessWidget {
   const Body({
