@@ -1,33 +1,47 @@
-import 'package:connect_four/Screens/Welcome/body.dart';
 import 'package:flutter/material.dart';
 import 'dynamic_background.dart';
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({
-    Key key,
-    this.title,
-  }) : super(key: key);
+abstract class MyDynamicStateful extends StatefulWidget {
+  MyDynamicStateful(
+      {Key key, this.title, @required this.statelessWidget, this.startState})
+      : super(key: key);
   final String title;
+  final StatelessWidget statelessWidget;
+  final bool startState;
 
   @override
-  BackgroundState createState() => BackgroundState();
+  BackgroundState createState() =>
+      BackgroundState(statelessWidget: statelessWidget, startState: startState);
 }
 
-class BackgroundState extends State<MyHomePage>
+class BackgroundState extends State<MyDynamicStateful>
     with SingleTickerProviderStateMixin {
-  StatelessWidget statelessWidget = Text("Hi");
+  final StatelessWidget statelessWidget;
   AnimationController animationController;
+  bool startState = false;
+
+  BackgroundState({@required this.statelessWidget, bool startState});
 
   @override
   void initState() {
     animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 5));
-    statelessWidget = Body();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    if (startState) {
+      Future.delayed(Duration(milliseconds: 1000), () {
+        animationController.forward();
+      });
+    } else {
+      animationController.forward(from: 1.0);
+      Future.delayed(Duration(milliseconds: 1000), () {
+        animationController.reverse();
+      });
+    }
+
     // animationController.forward();
     return Scaffold(
       body: Stack(
