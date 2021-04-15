@@ -1,6 +1,7 @@
+import 'package:connect_four/Screens/Welcome/body.dart';
+import 'package:connect_four/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'dynamic_background.dart';
-import 'dart:ui';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({
@@ -15,14 +16,14 @@ class MyHomePage extends StatefulWidget {
 
 class BackgroundState extends State<MyHomePage>
     with SingleTickerProviderStateMixin {
-  StatelessWidget statelessWidget;
+  StatelessWidget statelessWidget = Text("Hi");
   AnimationController animationController;
 
   @override
   void initState() {
-    statelessWidget = Text("Hi");
     animationController =
         AnimationController(vsync: this, duration: Duration(seconds: 5));
+    statelessWidget = Body();
     super.initState();
   }
 

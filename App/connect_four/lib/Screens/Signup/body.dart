@@ -1,4 +1,3 @@
-import 'package:connect_four/components/background.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_four/Screens/Login/login_screen.dart';
 import 'package:connect_four/components/already_have_an_account_acheck.dart';
@@ -10,8 +9,7 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Background(
-      child: SingleChildScrollView(
+    return SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
@@ -47,7 +45,6 @@ class Body extends StatelessWidget {
             ),
           ],
         ),
-      ),
     );
   }
 }
