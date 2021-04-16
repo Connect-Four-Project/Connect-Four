@@ -5,6 +5,6 @@ Connect Four online game built with Flutter and Quarkus
 
 Run Command
 
-```bash
+```
 flutter create .
 ```
