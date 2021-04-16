@@ -6,3 +6,4 @@ Run Command
 
 ```bash
 flutter create .
+```
