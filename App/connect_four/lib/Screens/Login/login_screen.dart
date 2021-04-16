@@ -1,12 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:connect_four/Screens/Login/login_body.dart';
+import 'package:connect_four/background/background_widget.dart';
 
-import 'body.dart';
-
-class LoginScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Body(),
-    );
-  }
+class LoginScreen extends MyDynamicStateful {
+  LoginScreen() : super(statelessWidget: LoginBody(), moveFromUpToDown: true);
 }

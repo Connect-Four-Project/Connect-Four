@@ -1,11 +1,7 @@
-import 'package:flutter/material.dart';
-import 'body.dart';
+import 'package:connect_four/background/background_widget.dart';
 
-class WelcomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Body(),
-    );
-  }
+import 'welcome_body.dart';
+
+class WelcomeScreen extends MyDynamicStateful {
+  WelcomeScreen() : super(statelessWidget: WelcomeBody(), moveFromUpToDown: false);
 }
