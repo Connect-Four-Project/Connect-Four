@@ -15,7 +15,9 @@ class WelcomeBody extends StatelessWidget {
           children: <Widget>[
             Text(
               "WELCOME TO CONNECT FOUR",
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: size.height * 0.05),
             SvgPicture.asset(
