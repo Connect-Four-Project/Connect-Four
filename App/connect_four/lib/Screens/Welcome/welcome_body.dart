@@ -14,7 +14,7 @@ class WelcomeBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "Connect Four",
+              "CONNECT FOUR",
               style: TextStyle(
                 shadows: [
                   Shadow(
@@ -28,18 +28,38 @@ class WelcomeBody extends StatelessWidget {
                     offset: Offset(-5.0, 5.0),
                   ),
                 ],
-                fontSize: 100,
+                fontFamily: 'PressStart2P',
+                fontSize: 60,
               ),
             ),
-            SizedBox(height: size.height * 0.05),
-            SvgPicture.asset(
-              "assets/icons/connect.svg",
-              height: size.height * 0.2,
-            ),
-            SizedBox(height: size.height * 0.05),
-            RoundedButton(
-              text: "PLAY ONLINE",
-              press: () {
+            SizedBox(height: size.height * 0.1),
+            RawMaterialButton(
+              fillColor: Color(0xFF6F35A5),
+              splashColor: Color(0xFFF1E6FF),
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    Icon(
+                      Icons.public,
+                      color: Color(0xFFF1E6FF),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text(
+                      "Play Online",
+                      maxLines: 1,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'PressStart2P',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -49,12 +69,35 @@ class WelcomeBody extends StatelessWidget {
                   ),
                 );
               },
+              shape: const StadiumBorder(),
             ),
-            RoundedButton(
-              text: "PLAY OFFLINE",
-              color: kPrimaryLightColor,
-              textColor: Colors.black,
-              press: () {},
+            RawMaterialButton(
+              fillColor: Color(0xFF6F35A5),
+              splashColor: Color(0xFFF1E6FF),
+              child: Padding(
+                padding: EdgeInsets.all(10.0),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    Icon(
+                      Icons.group,
+                      color: Color(0xFFF1E6FF),
+                    ),
+                    SizedBox(
+                      width: 10.0,
+                    ),
+                    Text(
+                      "2 Players (Offline)",
+                      maxLines: 1,
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontFamily: 'PressStart2P',
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              shape: const StadiumBorder(),
             ),
           ],
         ),
