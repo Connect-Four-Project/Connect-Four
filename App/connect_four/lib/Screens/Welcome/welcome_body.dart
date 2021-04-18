@@ -14,9 +14,21 @@ class WelcomeBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "WELCOME TO CONNECT FOUR",
+              "Connect Four",
               style: TextStyle(
-                fontWeight: FontWeight.bold,
+                shadows: [
+                  Shadow(
+                    color: Color(0xFF6F35A5),
+                    blurRadius: 10.0,
+                    offset: Offset(5.0, 5.0),
+                  ),
+                  Shadow(
+                    color: Color(0xFFF1E6FF),
+                    blurRadius: 10.0,
+                    offset: Offset(-5.0, 5.0),
+                  ),
+                ],
+                fontSize: 100,
               ),
             ),
             SizedBox(height: size.height * 0.05),
