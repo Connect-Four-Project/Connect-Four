@@ -29,37 +29,12 @@ class WelcomeBody extends StatelessWidget {
                   ),
                 ],
                 fontFamily: 'PressStart2P',
-                fontSize: 60,
+                fontSize: size.width * 0.075,
               ),
             ),
             SizedBox(height: size.height * 0.1),
-            RawMaterialButton(
-              fillColor: Color(0xFF6F35A5),
-              splashColor: Color(0xFFF1E6FF),
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.public,
-                      color: Color(0xFFF1E6FF),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Text(
-                      "Play Online",
-                      maxLines: 1,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'PressStart2P',
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              onPressed: () {
+            RoundedButton(
+              press: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -69,35 +44,18 @@ class WelcomeBody extends StatelessWidget {
                   ),
                 );
               },
-              shape: const StadiumBorder(),
-            ),
-            RawMaterialButton(
-              fillColor: Color(0xFF6F35A5),
-              splashColor: Color(0xFFF1E6FF),
-              child: Padding(
-                padding: EdgeInsets.all(10.0),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: const <Widget>[
-                    Icon(
-                      Icons.group,
-                      color: Color(0xFFF1E6FF),
-                    ),
-                    SizedBox(
-                      width: 10.0,
-                    ),
-                    Text(
-                      "2 Players (Offline)",
-                      maxLines: 1,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontFamily: 'PressStart2P',
-                      ),
-                    ),
-                  ],
-                ),
+              text: "Play Online",
+              icon: Icon(
+                Icons.public,
+                color: Color(0xFFF1E6FF),
               ),
-              shape: const StadiumBorder(),
+            ),
+            RoundedButton(
+              text: "2 Players (Offline)",
+              icon: Icon(
+                Icons.group,
+                color: Color(0xFFF1E6FF),
+              ),
             ),
           ],
         ),
