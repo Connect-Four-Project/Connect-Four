@@ -3,7 +3,7 @@ Connect Four online game built with Flutter and Quarkus
 
 ## How to Build
 
-Run Command
+Run This Command
 
 ```
 flutter create .
