@@ -22,12 +22,12 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
       child: TextField(
         obscureText: show_password,
         onChanged: widget.onChanged,
-        cursorColor: kPrimaryColor,
+        cursorColor: Constants.PrimaryColor,
         decoration: InputDecoration(
           hintText: "Password",
           icon: Icon(
             Icons.lock,
-            color: kPrimaryColor,
+            color: Constants.PrimaryColor,
           ),
           suffixIcon: InkWell(
             onTap: () {
@@ -37,7 +37,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
             },
             child: Icon(
               Icons.visibility,
-              color: kPrimaryColor,
+              color: Constants.PrimaryColor,
             ),
           ),
           border: InputBorder.none,

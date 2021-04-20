@@ -11,7 +11,7 @@ class ConnectFourApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Connect Four',
         theme: ThemeData(
-          primaryColor: kPrimaryColor,
+          primaryColor: Constants.PrimaryColor,
           scaffoldBackgroundColor: Colors.white,
         ),
         home: WelcomeScreen());

@@ -51,7 +51,7 @@ class LoginBody extends StatelessWidget {
               press: () {},
               icon: Icon(
                 Icons.login_rounded,
-                color: kPrimaryLightColor,
+                color: Constants.PrimaryLightColor,
               ),
             ),
             SizedBox(height: size.height * 0.03),
