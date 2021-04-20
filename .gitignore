@@ -1,0 +1,38 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+App/connect_four/*.iml
+App/connect_four/*.ipr
+App/connect_four/*.iws
+App/connect_four/.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+App/connect_four/.dart_tool/
+App/connect_four/.flutter-plugins
+App/connect_four/.flutter-plugins-dependencies
+App/connect_four/.packages
+App/connect_four/.pub-cache/
+App/connect_four/.pub/
+App/connect_four/build/
+
+# Android Studio will place build artifacts here
+App/connect_four/android
+App/connect_four/ios
+
+App/connect_four/web/
