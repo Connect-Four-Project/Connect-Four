@@ -1,3 +1,4 @@
+import 'package:connect_four/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_four/Screens/Login/login_screen.dart';
 import 'package:connect_four/components/already_have_an_account_acheck.dart';
@@ -46,7 +47,7 @@ class SignUpBody extends StatelessWidget {
               press: () {},
               icon: Icon(
                 Icons.app_registration,
-                color: Color(0xFFD3C6E3),
+                color: kPrimaryLightColor,
               ),
             ),
             SizedBox(height: size.height * 0.03),

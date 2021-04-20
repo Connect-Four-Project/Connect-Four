@@ -3,6 +3,7 @@ import 'package:connect_four/components/already_have_an_account_acheck.dart';
 import 'package:connect_four/components/rounded_button.dart';
 import 'package:connect_four/components/rounded_input_field.dart';
 import 'package:connect_four/components/rounded_password_field.dart';
+import 'package:connect_four/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class LoginBody extends StatelessWidget {
@@ -50,7 +51,7 @@ class LoginBody extends StatelessWidget {
               press: () {},
               icon: Icon(
                 Icons.login_rounded,
-                color: Color(0xFFD3C6E3),
+                color: kPrimaryLightColor,
               ),
             ),
             SizedBox(height: size.height * 0.03),
