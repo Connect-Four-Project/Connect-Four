@@ -63,6 +63,12 @@ flutter:
     - family: PressStart2P
       fonts:
         - asset: assets/fonts/PressStart2P-Regular.ttf
+    - family: Nunito
+      fonts:
+        - asset: assets/fonts/Nunito-Black.ttf
+    - family: NunitoLight
+      fonts:
+        - asset: assets/fonts/Nunito-Light.ttf
 
   # example:
   #   - family: Trajan Pro
