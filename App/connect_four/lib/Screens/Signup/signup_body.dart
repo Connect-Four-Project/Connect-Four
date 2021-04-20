@@ -15,7 +15,7 @@ class SignUpBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "SIGNUP",
+              "SIGN UP",
               style: TextStyle(
                 shadows: [
                   Shadow(
@@ -42,8 +42,12 @@ class SignUpBody extends StatelessWidget {
               onChanged: (value) {},
             ),
             RoundedButton(
-              text: "SIGNUP",
+              text: "SIGN UP",
               press: () {},
+              icon: Icon(
+                Icons.app_registration,
+                color: Color(0xFFD3C6E3),
+              ),
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(

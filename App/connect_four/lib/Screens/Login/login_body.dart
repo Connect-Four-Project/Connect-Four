@@ -19,7 +19,7 @@ class LoginBody extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "LOGIN",
+              "SIGN IN",
               style: TextStyle(
                 shadows: [
                   Shadow(
@@ -46,8 +46,12 @@ class LoginBody extends StatelessWidget {
               onChanged: (value) {},
             ),
             RoundedButton(
-              text: "LOGIN",
+              text: "SIGN IN",
               press: () {},
+              icon: Icon(
+                Icons.login_rounded,
+                color: Color(0xFFD3C6E3),
+              ),
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
