@@ -5,10 +5,10 @@ import 'dart:ui';
 class BackgroundPainter extends CustomPainter {
   BackgroundPainter({Animation<double> animation})
       : bluePaint = Paint()
-          ..color = Color(0xFF6F35A5)
+          ..color = Color(0xFF5C0CA7).withOpacity(0.4)
           ..style = PaintingStyle.fill,
         greyPaint = Paint()
-          ..color = Color(0xFFF1E6FF)
+          ..color = Color(0xFFF1E6FF).withOpacity(0.5)
           ..style = PaintingStyle.fill,
         orangePaint = Paint()
           ..color = Color(0xFF8057AA)
