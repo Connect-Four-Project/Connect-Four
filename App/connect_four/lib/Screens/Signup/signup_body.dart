@@ -47,7 +47,7 @@ class SignUpBody extends StatelessWidget {
               press: () {},
               icon: Icon(
                 Icons.app_registration,
-                color: kPrimaryLightColor,
+                color: Constants.PrimaryLightColor,
               ),
             ),
             SizedBox(height: size.height * 0.03),
