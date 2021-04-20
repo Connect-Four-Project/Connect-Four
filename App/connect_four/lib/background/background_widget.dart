@@ -3,15 +3,14 @@ import 'dynamic_background.dart';
 
 abstract class MyDynamicStateful extends StatefulWidget {
   MyDynamicStateful(
-      {Key key, this.title, @required this.statelessWidget, this.moveFromUpToDown})
+      {Key key, @required this.statelessWidget, this.moveFromUpToDown})
       : super(key: key);
-  final String title;
   final StatelessWidget statelessWidget;
   final bool moveFromUpToDown;
 
   @override
-  BackgroundState createState() =>
-      BackgroundState(statelessWidget: statelessWidget, startState: moveFromUpToDown);
+  BackgroundState createState() => BackgroundState(
+      statelessWidget: statelessWidget, startState: moveFromUpToDown);
 }
 
 class BackgroundState extends State<MyDynamicStateful>
@@ -42,7 +41,6 @@ class BackgroundState extends State<MyDynamicStateful>
       });
     }
 
-    // animationController.forward();
     return Scaffold(
       body: Stack(
         children: [
