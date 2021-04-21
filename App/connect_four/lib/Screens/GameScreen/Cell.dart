@@ -29,7 +29,7 @@ class Cell extends StatelessWidget {
         Container(
           height: 50,
           width: 50,
-          color: Colors.blue,
+          color: Colors.blue[880],
           child: Icon(
             Icons.circle,
             color: setColor(),
