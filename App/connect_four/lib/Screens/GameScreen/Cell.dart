@@ -8,21 +8,20 @@ enum cellMode {
 
 class Cell extends StatelessWidget {
   final currentCellMode;
+  final int cellNumber;
 
-  Cell({Key key, @required this.currentCellMode}) : super(key: key);
+  Cell({Key key, @required this.currentCellMode, this.cellNumber})
+      : super(key: key);
 
-  Color currColor = Colors.red;
 
-  void initColor() {
+  Color setColor() {
     switch (this.currentCellMode) {
       case cellMode.YELLOW:
-        currColor = Colors.yellow;
-        break;
+        return Colors.yellow;
       case cellMode.RED:
-        currColor = Colors.red;
-        break;
+        return Colors.red;
       default:
-        currColor = Colors.white;
+        return Colors.white;
     }
   }
 
@@ -31,7 +30,7 @@ class Cell extends StatelessWidget {
       height: 35,
       width: 35,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(32), color: currColor),
+          borderRadius: BorderRadius.circular(32), color: setColor()),
     );
   }
 

@@ -1,16 +1,42 @@
 import 'package:flutter/material.dart';
 
 import 'Cell.dart';
+import 'Controller.dart';
 
-class BoardColumn extends StatelessWidget {
+class BoardColumn extends StatefulWidget {
   final int colNumber;
 
-  const BoardColumn({Key key, @required this.colNumber}) : super(key: key);
+  BoardColumn({Key key, @required this.colNumber}) : super(key: key);
+
+  @override
+  _BoardColumnState createState() =>
+      _BoardColumnState(colNumber: this.colNumber);
+}
+
+class _BoardColumnState extends State<BoardColumn> {
+  int playerTurn, lastCell, colNumber;
+
+  @override
+  void initState() {
+    super.initState();
+    lastCell = 6;
+    playerTurn = 0;
+  }
+
+  _BoardColumnState({@required this.colNumber});
+
+  List<List<int>> isEmpty =
+      new List.generate(8, (i) => List.generate(8, (j) => -1));
 
   List<Cell> buildColumnCells() {
     List<Cell> cells = <Cell>[];
     for (int i = 0; i < 7; ++i) {
-      cells.add(new Cell());
+      cells.add(new Cell(
+        cellNumber: i,
+        currentCellMode: ((isEmpty[colNumber][i] == -1)
+            ? cellMode.EMPTY
+            : (isEmpty[colNumber][i] == 1 ? cellMode.RED : cellMode.YELLOW)),
+      ));
     }
     return cells;
   }
@@ -19,7 +45,10 @@ class BoardColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print(colNumber);
+        setState(() {
+          isEmpty = Controller.change(lastCell, colNumber);
+          lastCell--;
+        });
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
