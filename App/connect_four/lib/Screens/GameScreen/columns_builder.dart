@@ -1,7 +1,7 @@
 import 'package:connect_four/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-import 'Cell.dart';
+import 'cell.dart';
 import '../../Controller/Controller.dart';
 
 class BoardColumn extends StatefulWidget {
@@ -25,16 +25,16 @@ class _BoardColumnState extends State<BoardColumn> {
 
   _BoardColumnState({@required this.colNumber});
 
-  List<Cell> buildColumnCells() {
-    List<Cell> cells = <Cell>[];
+  List<Cell> _buildColumnCells() {
+    List<Cell> columns = <Cell>[];
     for (int i = 0; i < Constants.ROWS; ++i) {
-      cells.add(
+      columns.add(
         new Cell(
             currentCellMode:
                 Controller.getInstance().getCellMode(i, colNumber)),
       );
     }
-    return cells;
+    return columns;
   }
 
   @override
@@ -48,7 +48,7 @@ class _BoardColumnState extends State<BoardColumn> {
       },
       child: Column(
         mainAxisSize: MainAxisSize.min,
-        children: buildColumnCells(),
+        children: _buildColumnCells(),
       ),
     );
   }

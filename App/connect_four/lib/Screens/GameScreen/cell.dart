@@ -12,7 +12,7 @@ class Cell extends StatelessWidget {
 
   Cell({Key key, @required this.currentCellMode}) : super(key: key);
 
-  Color setColor() {
+  Color _setColor() {
     switch (this.currentCellMode) {
       case CellMode.PLAYER_1:
         return Colors.yellow;
@@ -33,7 +33,7 @@ class Cell extends StatelessWidget {
           color: Colors.blue[880],
           child: Icon(
             Icons.circle,
-            color: setColor(),
+            color: _setColor(),
             size: 50,
           ),
         ),

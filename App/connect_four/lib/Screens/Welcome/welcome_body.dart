@@ -1,4 +1,4 @@
-import 'package:connect_four/Screens/GameScreen/GameScreen.dart';
+import 'package:connect_four/Screens/GameScreen/game_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_four/Screens/Login/login_screen.dart';
 import 'package:connect_four/components/rounded_button.dart';

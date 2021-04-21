@@ -1,4 +1,4 @@
-import 'package:connect_four/Screens/GameScreen/Board.dart';
+import 'package:connect_four/Screens/GameScreen/board_builder.dart';
 import 'package:flutter/material.dart';
 
 class GameScreen extends StatelessWidget {

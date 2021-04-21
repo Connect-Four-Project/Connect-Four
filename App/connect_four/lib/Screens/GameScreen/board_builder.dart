@@ -3,15 +3,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'column.dart';
+import 'columns_builder.dart';
 
 class Board extends StatelessWidget {
-  List<BoardColumn> buildBoard() {
-    List<BoardColumn> columns = <BoardColumn>[];
+  List<BoardColumn> _buildBoard() {
+    List<BoardColumn> column = <BoardColumn>[];
     for (int j = 0; j < Constants.COLS; ++j) {
-      columns.add(new BoardColumn(colNumber: j));
+      column.add(new BoardColumn(colNumber: j));
     }
-    return columns;
+    return column;
   }
 
   @override
@@ -43,7 +43,7 @@ class Board extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: buildBoard(),
+                children: _buildBoard(),
               ),
             ],
           ),
