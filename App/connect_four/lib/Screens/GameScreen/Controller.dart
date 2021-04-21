@@ -1,19 +1,35 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-
-import 'column.dart';
+import 'package:connect_four/Screens/GameScreen/Cell.dart';
 
 class Controller {
-  static int playerTurn = 0;
+  static Controller _instance;
 
-  static List<List<int>> isEmpty = new List.generate(8, (i) => List.generate(8, (j) => -1));
+  static Controller getInstance() {
+    if (_instance == null) _instance = Controller._();
+    return _instance;
+  }
 
-  static void change(int lastCell, int colNumber) {
+  int _playerTurn;
+  List<List<CellMode>> _isEmpty;
+
+  Controller._() {
+    _playerTurn = 0;
+    _isEmpty =
+        new List.generate(8, (i) => List.generate(8, (j) => CellMode.EMPTY));
+  }
+
+  void change(int lastCell, int colNumber) {
     if (lastCell >= 0) {
-      isEmpty[colNumber][lastCell] = playerTurn;
-      playerTurn = (playerTurn + 1) % 2;
-      print(playerTurn);
+      _isEmpty[lastCell][colNumber] = _getPlayerCell();
+      _playerTurn = (_playerTurn + 1) % 2;
     }
+  }
+
+  CellMode getCellMode(int i, int j) {
+    return _isEmpty[i][j];
+  }
+
+  CellMode _getPlayerCell() {
+    if (_playerTurn == 0) return CellMode.PLAYER_1;
+    return CellMode.PLAYER_2;
   }
 }

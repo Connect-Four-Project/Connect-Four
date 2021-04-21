@@ -26,14 +26,13 @@ class _BoardColumnState extends State<BoardColumn> {
 
   List<Cell> buildColumnCells() {
     List<Cell> cells = <Cell>[];
+
     for (int i = 0; i < 7; ++i) {
-      cells.add(new Cell(
-        currentCellMode: ((Controller.isEmpty[colNumber][i] == -1)
-            ? CellMode.EMPTY
-            : (Controller.isEmpty[colNumber][i] == 1
-                ? CellMode.RED
-                : CellMode.YELLOW)),
-      ));
+      cells.add(
+        new Cell(
+            currentCellMode:
+                Controller.getInstance().getCellMode(i, colNumber)),
+      );
     }
     return cells;
   }
@@ -43,7 +42,7 @@ class _BoardColumnState extends State<BoardColumn> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          Controller.change(lastCell, colNumber);
+          Controller.getInstance().change(lastCell, colNumber);
           lastCell--;
         });
       },

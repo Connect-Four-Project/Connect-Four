@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 enum CellMode {
   EMPTY,
-  YELLOW,
-  RED,
+  PLAYER_1,
+  PLAYER_2,
 }
 
 class Cell extends StatelessWidget {
@@ -13,9 +13,9 @@ class Cell extends StatelessWidget {
 
   Color setColor() {
     switch (this.currentCellMode) {
-      case CellMode.YELLOW:
+      case CellMode.PLAYER_1:
         return Colors.yellow;
-      case CellMode.RED:
+      case CellMode.PLAYER_2:
         return Colors.red;
       default:
         return Colors.white;
