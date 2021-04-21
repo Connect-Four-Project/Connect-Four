@@ -1,14 +1,9 @@
+import 'package:connect_four/Screens/GameScreen/Board.dart';
 import 'package:flutter/material.dart';
-import 'GameBody.dart';
 
 class GameScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text("Game Screen"),
-        ),
-        body: GameBody());
+    return Scaffold(body: Board());
   }
 }
