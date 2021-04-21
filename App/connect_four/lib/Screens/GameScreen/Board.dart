@@ -8,7 +8,7 @@ class Board extends StatelessWidget {
   List<BoardColumn> buildBoard() {
     List<BoardColumn> columns = <BoardColumn>[];
     for (int i = 0; i < 7; ++i) {
-      columns.add(new BoardColumn());
+      columns.add(new BoardColumn(colNumber: i));
     }
     return columns;
   }
