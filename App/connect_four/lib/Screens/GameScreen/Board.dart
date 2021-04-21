@@ -27,7 +27,7 @@ class Board extends StatelessWidget {
               topLeft: Radius.circular(10),
               topRight: Radius.circular(10),
             ),
-            color: Colors.blue[880],
+            color: Colors.blue[800],
             boxShadow: [
               BoxShadow(
                 color: Colors.grey.withOpacity(0.5),
