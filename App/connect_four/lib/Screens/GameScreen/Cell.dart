@@ -8,9 +8,9 @@ enum cellMode {
 
 class Cell extends StatelessWidget {
   final currentCellMode;
-  final int cellNumber;
 
-  Cell({Key key, @required this.currentCellMode, this.cellNumber})
+
+  Cell({Key key, @required this.currentCellMode})
       : super(key: key);
 
 

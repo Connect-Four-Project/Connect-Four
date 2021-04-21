@@ -32,7 +32,6 @@ class _BoardColumnState extends State<BoardColumn> {
     List<Cell> cells = <Cell>[];
     for (int i = 0; i < 7; ++i) {
       cells.add(new Cell(
-        cellNumber: i,
         currentCellMode: ((isEmpty[colNumber][i] == -1)
             ? cellMode.EMPTY
             : (isEmpty[colNumber][i] == 1 ? cellMode.RED : cellMode.YELLOW)),
