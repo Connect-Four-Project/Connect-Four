@@ -33,36 +33,5 @@ class Controller {
     if (_playerTurn == 0) return CellMode.PLAYER_1;
     return CellMode.PLAYER_2;
   }
-
-  bool checkWinner(int playerMoves) {
-    return (playerMoves == 4);
-  }
-
-//   int checkHorizontal() {
-//     for (int i = 0; i < Constants.ROWS; i++) {
-//       int playerOne = 0, playerTwo = 0;
-//       for (int j = 0; j < Constants.COLS; j++) {
-//         if (_isEmpty[i][j] == CellMode.PLAYER_1) {
-//           playerOne++;
-//           playerTwo = 0;
-//         } else if (_isEmpty[i][j] == CellMode.PLAYER_2) {
-//           playerTwo++;
-//           playerOne = 0;
-//         } else {
-//           break;
-//         }
-//         if (checkWinner(playerOne)) return 1;
-//         if (checkWinner(playerTwo)) return 2;
-//       }
-//     }
-//     return -1;
-//   }
-//
-//
-//   int Winner() {
-//     int winner = checkHorizontal();
-//     if (winner != -1) return winner;
-//     winner = checkVertical();
-//     if (winner != -1) return winner;
-//   }
+  
 }
