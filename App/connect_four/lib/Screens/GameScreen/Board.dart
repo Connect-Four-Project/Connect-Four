@@ -4,15 +4,15 @@ import 'package:flutter/widgets.dart';
 
 import 'column.dart';
 
-List<BoardColumn> buildBoard() {
-  List<BoardColumn> columns = <BoardColumn>[];
-  for (int i = 0; i < 7; ++i) {
-    columns.add(new BoardColumn());
-  }
-  return columns;
-}
-
 class Board extends StatelessWidget {
+  List<BoardColumn> buildBoard() {
+    List<BoardColumn> columns = <BoardColumn>[];
+    for (int i = 0; i < 7; ++i) {
+      columns.add(new BoardColumn());
+    }
+    return columns;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
