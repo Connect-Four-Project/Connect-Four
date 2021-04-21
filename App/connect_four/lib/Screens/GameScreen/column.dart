@@ -33,8 +33,8 @@ class _BoardColumnState extends State<BoardColumn> {
     for (int i = 0; i < 7; ++i) {
       cells.add(new Cell(
         currentCellMode: ((isEmpty[colNumber][i] == -1)
-            ? cellMode.EMPTY
-            : (isEmpty[colNumber][i] == 1 ? cellMode.RED : cellMode.YELLOW)),
+            ? CellMode.EMPTY
+            : (isEmpty[colNumber][i] == 1 ? CellMode.RED : CellMode.YELLOW)),
       ));
     }
     return cells;
