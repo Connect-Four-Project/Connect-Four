@@ -9,12 +9,11 @@ class Controller {
 
   static List<List<int>> isEmpty = new List.generate(8, (i) => List.generate(8, (j) => -1));
 
-  static List<List<int>> change(int lastCell, int colNumber) {
+  static void change(int lastCell, int colNumber) {
     if (lastCell >= 0) {
       isEmpty[colNumber][lastCell] = playerTurn;
       playerTurn = (playerTurn + 1) % 2;
       print(playerTurn);
     }
-    return isEmpty;
   }
 }

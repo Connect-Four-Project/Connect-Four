@@ -14,27 +14,25 @@ class BoardColumn extends StatefulWidget {
 }
 
 class _BoardColumnState extends State<BoardColumn> {
-  int playerTurn, lastCell, colNumber;
+  int lastCell, colNumber;
 
   @override
   void initState() {
     super.initState();
     lastCell = 6;
-    playerTurn = 0;
   }
 
   _BoardColumnState({@required this.colNumber});
-
-  List<List<int>> isEmpty =
-      new List.generate(8, (i) => List.generate(8, (j) => -1));
 
   List<Cell> buildColumnCells() {
     List<Cell> cells = <Cell>[];
     for (int i = 0; i < 7; ++i) {
       cells.add(new Cell(
-        currentCellMode: ((isEmpty[colNumber][i] == -1)
+        currentCellMode: ((Controller.isEmpty[colNumber][i] == -1)
             ? CellMode.EMPTY
-            : (isEmpty[colNumber][i] == 1 ? CellMode.RED : CellMode.YELLOW)),
+            : (Controller.isEmpty[colNumber][i] == 1
+                ? CellMode.RED
+                : CellMode.YELLOW)),
       ));
     }
     return cells;
@@ -45,7 +43,7 @@ class _BoardColumnState extends State<BoardColumn> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          isEmpty = Controller.change(lastCell, colNumber);
+          Controller.change(lastCell, colNumber);
           lastCell--;
         });
       },
