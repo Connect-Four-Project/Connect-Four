@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'coin.dart';
-
 enum cellMode {
   EMPTY,
   YELLOW,
