@@ -1,3 +1,4 @@
+import 'package:connect_four/Screens/GameScreen/GameScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:connect_four/Screens/Login/login_screen.dart';
 import 'package:connect_four/components/rounded_button.dart';
@@ -50,6 +51,16 @@ class WelcomeBody extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.01),
             RoundedButton(
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return GameScreen();
+                    },
+                  ),
+                );
+              },
               text: "2 PLAYERS (OFFLINE)",
               icon: Icon(
                 Icons.group,
