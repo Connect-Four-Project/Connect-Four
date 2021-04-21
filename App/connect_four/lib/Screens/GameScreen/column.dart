@@ -1,3 +1,4 @@
+import 'package:connect_four/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 import 'Cell.dart';
@@ -19,15 +20,14 @@ class _BoardColumnState extends State<BoardColumn> {
   @override
   void initState() {
     super.initState();
-    lastCell = 6;
+    lastCell = Constants.ROWS - 1;
   }
 
   _BoardColumnState({@required this.colNumber});
 
   List<Cell> buildColumnCells() {
     List<Cell> cells = <Cell>[];
-
-    for (int i = 0; i < 7; ++i) {
+    for (int i = 0; i < Constants.ROWS; ++i) {
       cells.add(
         new Cell(
             currentCellMode:

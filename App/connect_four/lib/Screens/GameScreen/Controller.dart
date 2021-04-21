@@ -1,4 +1,5 @@
 import 'package:connect_four/Screens/GameScreen/Cell.dart';
+import 'package:connect_four/constants/constants.dart';
 
 class Controller {
   static Controller _instance;
@@ -13,8 +14,8 @@ class Controller {
 
   Controller._() {
     _playerTurn = 0;
-    _isEmpty =
-        new List.generate(8, (i) => List.generate(8, (j) => CellMode.EMPTY));
+    _isEmpty = new List.generate(Constants.ROWS,
+        (i) => List.generate(Constants.COLS, (j) => CellMode.EMPTY));
   }
 
   void change(int lastCell, int colNumber) {
@@ -24,8 +25,8 @@ class Controller {
     }
   }
 
-  CellMode getCellMode(int i, int j) {
-    return _isEmpty[i][j];
+  CellMode getCellMode(int row, int col) {
+    return _isEmpty[row][col];
   }
 
   CellMode _getPlayerCell() {

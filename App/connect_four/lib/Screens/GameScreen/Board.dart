@@ -1,3 +1,4 @@
+import 'package:connect_four/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -7,8 +8,8 @@ import 'column.dart';
 class Board extends StatelessWidget {
   List<BoardColumn> buildBoard() {
     List<BoardColumn> columns = <BoardColumn>[];
-    for (int i = 0; i < 7; ++i) {
-      columns.add(new BoardColumn(colNumber: i));
+    for (int j = 0; j < Constants.COLS; ++j) {
+      columns.add(new BoardColumn(colNumber: j));
     }
     return columns;
   }
