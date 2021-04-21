@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 
 import 'column.dart';
 
-
 List<BoardColumn> buildBoard() {
   List<BoardColumn> columns = <BoardColumn>[];
   for (int i = 0; i < 7; ++i) {
