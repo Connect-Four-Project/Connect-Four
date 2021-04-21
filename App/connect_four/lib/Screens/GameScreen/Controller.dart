@@ -18,9 +18,9 @@ class Controller {
         (i) => List.generate(Constants.COLS, (j) => CellMode.EMPTY));
   }
 
-  void change(int lastCell, int colNumber) {
-    if (lastCell >= 0) {
-      _isEmpty[lastCell][colNumber] = _getPlayerCell();
+  void updateCell(int row, int col) {
+    if (row >= 0) {
+      _isEmpty[row][col] = _getPlayerCell();
       _playerTurn = (_playerTurn + 1) % 2;
     }
   }

@@ -42,7 +42,7 @@ class _BoardColumnState extends State<BoardColumn> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          Controller.getInstance().change(lastCell, colNumber);
+          Controller.getInstance().updateCell(lastCell, colNumber);
           lastCell--;
         });
       },
