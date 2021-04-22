@@ -35,11 +35,60 @@ class _BoardState extends State<Board> {
     return column;
   }
 
+  Text getText(Size size) {
+    print(Controller.getInstance().isPlayerOne());
+    if (Controller.getInstance().isPlayerOne()) {
+      return Text(
+        "PLAYER ONE",
+        style: TextStyle(
+          shadows: [
+            Shadow(
+              color: Color(0xFF4C4C4C),
+              blurRadius: 10.0,
+              offset: Offset(5.0, 5.0),
+            ),
+            Shadow(
+              color: Color(0xFFBDC2A6),
+              blurRadius: 10.0,
+              offset: Offset(-5.0, 5.0),
+            ),
+          ],
+          fontFamily: 'PressStart2P',
+          fontSize: size.width * 0.075,
+          color: Color(0xFFFFF400),
+        ),
+      );
+    }
+
+    return Text(
+      "PLAYER TWO",
+      style: TextStyle(
+        shadows: [
+          Shadow(
+            color: Color(0xFF4C4C4C),
+            blurRadius: 10.0,
+            offset: Offset(5.0, 5.0),
+          ),
+          Shadow(
+            color: Color(0xFFAF6E6E),
+            blurRadius: 10.0,
+            offset: Offset(-5.0, 5.0),
+          ),
+        ],
+        fontFamily: 'PressStart2P',
+        fontSize: size.width * 0.075,
+        color: Color(0xFF800000),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
+        getText(size),
         Padding(
           padding: const EdgeInsets.only(top: 90),
           child: Container(
