@@ -42,4 +42,6 @@ class Controller {
       }
     }
   }
+
+  bool isPlayerOne() {return _playerTurn == 0 ? true : false;}
 }
