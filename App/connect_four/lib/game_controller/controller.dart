@@ -34,12 +34,12 @@ class Controller {
     return CellMode.PLAYER_2;
   }
 
-  void reset() {
+  void resetGame() {
+    _playerTurn = 0;
     for (int i = 0; i < Constants.ROWS; ++i) {
       for (int j = 0; j < Constants.COLS; j++) {
         _cellMode[i][j] = CellMode.EMPTY;
       }
     }
-    _playerTurn = 0;
   }
 }
