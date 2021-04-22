@@ -1,10 +1,12 @@
-import 'package:connect_four/constants/constants.dart';
-import 'package:flutter/material.dart';
-import 'package:connect_four/Screens/Login/login_screen.dart';
+
 import 'package:connect_four/components/already_have_an_account_acheck.dart';
 import 'package:connect_four/components/rounded_button.dart';
 import 'package:connect_four/components/rounded_input_field.dart';
 import 'package:connect_four/components/rounded_password_field.dart';
+import 'package:connect_four/constants/constants.dart';
+import 'package:connect_four/screens/login/login_screen.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class SignUpBody extends StatelessWidget {
   @override

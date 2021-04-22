@@ -1,8 +1,8 @@
+import 'package:connect_four/screens/game_screen/cell.dart';
 import 'package:connect_four/constants/constants.dart';
+import 'package:connect_four/game_controller/controller.dart';
 import 'package:flutter/material.dart';
 
-import 'cell.dart';
-import '../../Controller/Controller.dart';
 
 class BoardColumn extends StatefulWidget {
   final int colNumber;
