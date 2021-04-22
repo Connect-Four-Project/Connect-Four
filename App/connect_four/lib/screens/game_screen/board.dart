@@ -23,7 +23,7 @@ class _BoardState extends State<Board> {
         GestureDetector(
           onTap: () {
             setState(() {
-              Controller.getInstance().updateCell(Constants.ROWS - 1, j);
+              Controller.getInstance().playColumn(j);
             });
           },
           child: BoardColumn(

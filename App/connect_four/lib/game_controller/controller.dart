@@ -11,18 +11,25 @@ class Controller {
 
   int _playerTurn;
   List<List<CellMode>> _cellMode;
+  List<int> _lastRowCell;
 
   Controller._() {
     _playerTurn = 0;
     _cellMode = new List.generate(Constants.ROWS,
         (i) => List.generate(Constants.COLS, (j) => CellMode.EMPTY));
+    _lastRowCell = new List.generate(Constants.COLS, (i) => Constants.ROWS - 1);
   }
 
-  void updateCell(int row, int col) {
-    if (row >= 0) {
-      _cellMode[row][col] = _getPlayerCell();
-      _playerTurn = (_playerTurn + 1) % 2;
+  void playColumn(int col) {
+    if (_lastRowCell[col] >= 0) {
+      _updateCell(_lastRowCell[col], col);
+      _lastRowCell[col]--;
     }
+  }
+
+  void _updateCell(int row, int col) {
+    _cellMode[row][col] = _getPlayerCell();
+    _playerTurn = (_playerTurn + 1) % 2;
   }
 
   CellMode getCellMode(int row, int col) {
@@ -43,5 +50,7 @@ class Controller {
     }
   }
 
-  bool isPlayerOne() {return _playerTurn == 0 ? true : false;}
+  bool isPlayerOne() {
+    return _playerTurn == 0 ? true : false;
+  }
 }
