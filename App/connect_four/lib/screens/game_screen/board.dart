@@ -1,3 +1,4 @@
+import 'package:connect_four/components/text_title.dart';
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/game_controller/controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -35,50 +36,16 @@ class _BoardState extends State<Board> {
     return column;
   }
 
-  Text getText(Size size) {
-    print(Controller.getInstance().isPlayerOne());
+  Widget getText(Size size) {
     if (Controller.getInstance().isPlayerOne()) {
-      return Text(
-        "PLAYER ONE",
-        style: TextStyle(
-          shadows: [
-            Shadow(
-              color: Color(0xFF4C4C4C),
-              blurRadius: 10.0,
-              offset: Offset(5.0, 5.0),
-            ),
-            Shadow(
-              color: Color(0xFFBDC2A6),
-              blurRadius: 10.0,
-              offset: Offset(-5.0, 5.0),
-            ),
-          ],
-          fontFamily: 'PressStart2P',
-          fontSize: size.width * 0.075,
-          color: Color(0xFFFFF400),
-        ),
+      return TextTitle(
+        title: "PLAYER ONE",
+        color: Constants.PrimaryDarkColor,
       );
     }
-
-    return Text(
-      "PLAYER TWO",
-      style: TextStyle(
-        shadows: [
-          Shadow(
-            color: Color(0xFF4C4C4C),
-            blurRadius: 10.0,
-            offset: Offset(5.0, 5.0),
-          ),
-          Shadow(
-            color: Color(0xFFAF6E6E),
-            blurRadius: 10.0,
-            offset: Offset(-5.0, 5.0),
-          ),
-        ],
-        fontFamily: 'PressStart2P',
-        fontSize: size.width * 0.075,
-        color: Color(0xFF800000),
-      ),
+    return TextTitle(
+      title: "PLAYER TWO",
+      color: Constants.PrimaryDarkColor,
     );
   }
 
