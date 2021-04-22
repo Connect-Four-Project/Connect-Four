@@ -8,7 +8,7 @@ import 'column.dart';
 
 class Board extends StatelessWidget {
   void init() {
-    Controller.getInstance().reset();
+    Controller.getInstance().resetGame();
   }
 
   List<BoardColumn> _buildBoard() {
