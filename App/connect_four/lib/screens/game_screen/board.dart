@@ -1,4 +1,5 @@
 import 'package:connect_four/constants/constants.dart';
+import 'package:connect_four/game_controller/controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,6 +7,10 @@ import 'package:flutter/widgets.dart';
 import 'column.dart';
 
 class Board extends StatelessWidget {
+  void init() {
+    Controller.getInstance().reset();
+  }
+
   List<BoardColumn> _buildBoard() {
     List<BoardColumn> column = <BoardColumn>[];
     for (int j = 0; j < Constants.COLS; ++j) {
@@ -16,6 +21,7 @@ class Board extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    init();
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

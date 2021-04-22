@@ -58,7 +58,7 @@ class WelcomeBody extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return GameScreen();
+                      return new GameScreen();
                     },
                   ),
                 );

@@ -29,9 +29,7 @@ class _BoardColumnState extends State<BoardColumn> {
     List<Cell> columns = <Cell>[];
     for (int i = 0; i < Constants.ROWS; ++i) {
       columns.add(
-        new Cell(
-            currentCellMode:
-                Controller.getInstance().getCellMode(i, colNumber)),
+        new Cell(currentCellMode: Controller.getInstance().getCellMode(i, colNumber)),
       );
     }
     return columns;
