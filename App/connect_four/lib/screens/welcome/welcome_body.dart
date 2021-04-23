@@ -1,5 +1,5 @@
 import 'package:connect_four/components/rounded_button.dart';
-import 'package:connect_four/components/text_title.dart';
+import 'package:connect_four/components/game_text_title.dart';
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/screens/game_screen/game_screen.dart';
 import 'package:connect_four/screens/login/login_screen.dart';
@@ -15,9 +15,8 @@ class WelcomeBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextTitle(
+            GameTextTitle(
               title: "CONNECT FOUR",
-              color: Constants.PrimaryDarkColor,
             ),
             SizedBox(height: size.height * 0.1),
             RoundedButton(

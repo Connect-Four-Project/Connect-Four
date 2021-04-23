@@ -1,12 +1,16 @@
+import 'package:connect_four/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-class TextTitle extends StatelessWidget {
+class GameTextTitle extends StatelessWidget {
   final String title;
-  final Color color;
-  const TextTitle({
+  final Color shadowColor;
+  final Color textColor;
+
+  const GameTextTitle({
     Key key,
     this.title,
-    this.color,
+    this.shadowColor: Constants.PrimaryDarkColor,
+    this.textColor: Colors.white,
   }) : super(key: key);
 
   @override
@@ -15,17 +19,12 @@ class TextTitle extends StatelessWidget {
     return Text(
       title,
       style: TextStyle(
-        color: Colors.white,
+        color: textColor,
         shadows: [
           Shadow(
-            color: Colors.black,
-            blurRadius: 10.0,
-            offset: Offset(5.0, 5.0),
-          ),
-          Shadow(
-            color: Colors.blueAccent,
-            blurRadius: 10.0,
-            offset: Offset(-5.0, 5.0),
+            color: shadowColor,
+            blurRadius: 2.0,
+            offset: Offset(-3.0, 2.0),
           ),
         ],
         fontFamily: 'PressStart2P',

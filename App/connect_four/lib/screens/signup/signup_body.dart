@@ -2,7 +2,7 @@ import 'package:connect_four/components/already_have_an_account_acheck.dart';
 import 'package:connect_four/components/rounded_button.dart';
 import 'package:connect_four/components/rounded_input_field.dart';
 import 'package:connect_four/components/rounded_password_field.dart';
-import 'package:connect_four/components/text_title.dart';
+import 'package:connect_four/components/game_text_title.dart';
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/screens/login/login_screen.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,9 +17,8 @@ class SignUpBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            TextTitle(
+            GameTextTitle(
               title: "SIGN UP",
-              color: Constants.PrimaryDarkColor,
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(

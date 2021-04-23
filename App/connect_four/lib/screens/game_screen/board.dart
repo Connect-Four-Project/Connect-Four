@@ -1,4 +1,4 @@
-import 'package:connect_four/components/text_title.dart';
+import 'package:connect_four/components/game_text_title.dart';
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/game_controller/controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -38,14 +38,16 @@ class _BoardState extends State<Board> {
 
   Widget getText(Size size) {
     if (Controller.getInstance().isPlayerOne()) {
-      return TextTitle(
+      return GameTextTitle(
         title: "PLAYER ONE",
-        color: Constants.PrimaryDarkColor,
+        shadowColor: Colors.amber,
+        textColor: Colors.yellow,
       );
     }
-    return TextTitle(
+    return GameTextTitle(
       title: "PLAYER TWO",
-      color: Constants.PrimaryDarkColor,
+      shadowColor: Constants.PrimaryDarkColor,
+      textColor: Colors.red,
     );
   }
 
