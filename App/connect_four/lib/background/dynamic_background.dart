@@ -1,28 +1,33 @@
+import 'package:connect_four/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'dart:ui';
 
 class BackgroundPainter extends CustomPainter {
   BackgroundPainter({Animation<double> animation})
-      : bluePaint = Paint()
-          ..color = Color(0xFF5C0CA7).withOpacity(0.4)
+      : firstPaint = Paint()
+          ..color = Constants.BackgroundFirstLayer.withOpacity(0.8)
           ..style = PaintingStyle.fill,
-        greyPaint = Paint()
-          ..color = Color(0xFFF1E6FF).withOpacity(0.5)
+        secondPaint = Paint()
+          ..color = Constants.BackgroundSecondLayer
           ..style = PaintingStyle.fill,
-        orangePaint = Paint()
-          ..color = Color(0xFF8057AA)
+        thirdPaint = Paint()
+          ..color = Constants.BackgroundThirdLayer
           ..style = PaintingStyle.fill,
-        linePaint = Paint()
-          ..color = Color(0xffCC7700)
+        firstLine = Paint()
+          ..color = Constants.BackgroundFirstLine.withOpacity(0.8)
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 4,
+          ..strokeWidth = 2,
+        secondLine = Paint()
+          ..color = Constants.BackgroundSecondLine.withOpacity(0.8)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2,
         liquidAnim = CurvedAnimation(
           curve: Curves.elasticOut,
           reverseCurve: Curves.easeInBack,
           parent: animation,
         ),
-        orangeAnim = CurvedAnimation(
+        thirdAnim = CurvedAnimation(
           parent: animation,
           curve: const Interval(
             0,
@@ -31,13 +36,13 @@ class BackgroundPainter extends CustomPainter {
           ),
           reverseCurve: Curves.linear,
         ),
-        greyAnim = CurvedAnimation(
+        secondAnim = CurvedAnimation(
           parent: animation,
           curve: const Interval(0, 0.8,
               curve: Interval(0, 0.9, curve: SpringCurve())),
           reverseCurve: Curves.easeInCirc,
         ),
-        blueAnim = CurvedAnimation(
+        firstAnim = CurvedAnimation(
           parent: animation,
           curve: const SpringCurve(),
           reverseCurve: Curves.easeInCirc,
@@ -45,28 +50,29 @@ class BackgroundPainter extends CustomPainter {
         super(repaint: animation);
 
   final Animation<double> liquidAnim;
-  final Animation<double> blueAnim;
-  final Animation<double> greyAnim;
-  final Animation<double> orangeAnim;
+  final Animation<double> firstAnim;
+  final Animation<double> secondAnim;
+  final Animation<double> thirdAnim;
 
-  final Paint linePaint;
-  final Paint bluePaint;
-  final Paint greyPaint;
-  final Paint orangePaint;
+  final Paint firstPaint;
+  final Paint secondPaint;
+  final Paint thirdPaint;
+  final Paint firstLine;
+  final Paint secondLine;
 
-  void paintBlue(Size size, Canvas canvas) {
+  void paintFirstLayer(Size size, Canvas canvas) {
     final path = Path();
-    path.moveTo(size.width, size.height / 2);
+    path.moveTo(size.width, 0);
     path.lineTo(size.width, 0);
     path.lineTo(0, 0);
     path.lineTo(
       0,
-      lerpDouble(0, size.height, blueAnim.value),
+      lerpDouble(0, size.height, firstAnim.value),
     );
     addPointsToPath(path, [
       Point(
-        lerpDouble(0, size.width / 3, blueAnim.value),
-        lerpDouble(0, size.height, blueAnim.value),
+        lerpDouble(0, size.width / 3, firstAnim.value),
+        lerpDouble(0, size.height, firstAnim.value),
       ),
       Point(
         lerpDouble(size.width / 2, size.width / 4 * 3, liquidAnim.value),
@@ -77,12 +83,13 @@ class BackgroundPainter extends CustomPainter {
         lerpDouble(size.height / 2, size.height * 3 / 4, liquidAnim.value),
       ),
     ]);
-    canvas.drawPath(path, bluePaint);
+    canvas.drawPath(path, firstPaint);
+    canvas.drawPath(path, secondLine);
   }
 
-  void paintGrey(Size size, Canvas canvas) {
+  void paintSecondLayer(Size size, Canvas canvas) {
     final path = Path();
-    path.moveTo(size.width, 300);
+    path.moveTo(size.width, 0);
     path.lineTo(size.width, 0);
     path.lineTo(0, 0);
     path.lineTo(
@@ -90,7 +97,7 @@ class BackgroundPainter extends CustomPainter {
       lerpDouble(
         size.height / 4,
         size.height / 2,
-        greyAnim.value,
+        secondAnim.value,
       ),
     );
     addPointsToPath(
@@ -106,27 +113,28 @@ class BackgroundPainter extends CustomPainter {
         ),
         Point(
           size.width * 4 / 5,
-          lerpDouble(size.height / 6, size.height / 3, greyAnim.value),
+          lerpDouble(size.height / 6, size.height / 3, secondAnim.value),
         ),
         Point(
           size.width,
-          lerpDouble(size.height / 5, size.height / 4, greyAnim.value),
+          lerpDouble(size.height / 5, size.height / 4, secondAnim.value),
         ),
       ],
     );
 
-    canvas.drawPath(path, greyPaint);
+    canvas.drawPath(path, secondPaint);
+    canvas.drawPath(path, firstLine);
   }
 
-  void paintOrange(Size size, Canvas canvas) {
-    if (orangeAnim.value > 0) {
+  void paintThirdLayer(Size size, Canvas canvas) {
+    if (thirdAnim.value > 0) {
       final path = Path();
 
       path.moveTo(size.width * 3 / 4, 0);
       path.lineTo(0, 0);
       path.lineTo(
         0,
-        lerpDouble(0, size.height / 12, orangeAnim.value),
+        lerpDouble(0, size.height / 12, thirdAnim.value),
       );
 
       addPointsToPath(path, [
@@ -148,17 +156,18 @@ class BackgroundPainter extends CustomPainter {
         ),
       ]);
 
-      canvas.drawPath(path, orangePaint);
+      canvas.drawPath(path, thirdPaint);
+      canvas.drawPath(path, secondLine);
     }
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-    paintBlue(size, canvas);
+    paintFirstLayer(size, canvas);
 
-    paintGrey(size, canvas);
+    paintSecondLayer(size, canvas);
 
-    paintOrange(size, canvas);
+    paintThirdLayer(size, canvas);
   }
 
   @override
