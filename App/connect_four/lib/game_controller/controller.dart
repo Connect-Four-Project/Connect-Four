@@ -50,7 +50,11 @@ class Controller {
     }
   }
 
-  bool isPlayerOne() {
+  bool isPlayerOneTurn() {
     return _playerTurn == 0 ? true : false;
+  }
+
+  bool isGameOver() {
+
   }
 }
