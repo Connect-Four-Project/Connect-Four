@@ -5,21 +5,25 @@ import 'dart:ui';
 
 class BackgroundPainter extends CustomPainter {
   BackgroundPainter({Animation<double> animation})
-      : firstPaint = Paint()
-          ..color = Constants.BackgroundFirstLayer.withOpacity(0.8)
+      : upperPaint = Paint()
+          ..color = Constants.BackgroundUpperLayer
           ..style = PaintingStyle.fill,
-        secondPaint = Paint()
-          ..color = Constants.BackgroundSecondLayer
+        middlePaint = Paint()
+          ..color = Constants.BackgroundMiddleLayer
           ..style = PaintingStyle.fill,
-        thirdPaint = Paint()
-          ..color = Constants.BackgroundThirdLayer
+        bottomPaint = Paint()
+          ..color = Constants.BackgroundBottomLayer
           ..style = PaintingStyle.fill,
-        firstLine = Paint()
-          ..color = Constants.BackgroundFirstLine.withOpacity(0.8)
+        upperLine = Paint()
+          ..color = Constants.BackgroundUpperLine
           ..style = PaintingStyle.stroke
           ..strokeWidth = 2,
-        secondLine = Paint()
-          ..color = Constants.BackgroundSecondLine.withOpacity(0.8)
+        middleLine = Paint()
+          ..color = Constants.BackgroundMiddleLine
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2,
+        bottomLine = Paint()
+          ..color = Constants.BackgroundBottomLine
           ..style = PaintingStyle.stroke
           ..strokeWidth = 2,
         liquidAnim = CurvedAnimation(
@@ -27,7 +31,7 @@ class BackgroundPainter extends CustomPainter {
           reverseCurve: Curves.easeInBack,
           parent: animation,
         ),
-        thirdAnim = CurvedAnimation(
+        upperAnim = CurvedAnimation(
           parent: animation,
           curve: const Interval(
             0,
@@ -36,13 +40,13 @@ class BackgroundPainter extends CustomPainter {
           ),
           reverseCurve: Curves.linear,
         ),
-        secondAnim = CurvedAnimation(
+        middleAnim = CurvedAnimation(
           parent: animation,
           curve: const Interval(0, 0.8,
               curve: Interval(0, 0.9, curve: SpringCurve())),
           reverseCurve: Curves.easeInCirc,
         ),
-        firstAnim = CurvedAnimation(
+        bottomAnim = CurvedAnimation(
           parent: animation,
           curve: const SpringCurve(),
           reverseCurve: Curves.easeInCirc,
@@ -50,29 +54,31 @@ class BackgroundPainter extends CustomPainter {
         super(repaint: animation);
 
   final Animation<double> liquidAnim;
-  final Animation<double> firstAnim;
-  final Animation<double> secondAnim;
-  final Animation<double> thirdAnim;
+  final Animation<double> upperAnim;
+  final Animation<double> middleAnim;
+  final Animation<double> bottomAnim;
 
-  final Paint firstPaint;
-  final Paint secondPaint;
-  final Paint thirdPaint;
-  final Paint firstLine;
-  final Paint secondLine;
+  final Paint upperPaint;
+  final Paint middlePaint;
+  final Paint bottomPaint;
 
-  void paintFirstLayer(Size size, Canvas canvas) {
+  final Paint upperLine;
+  final Paint middleLine;
+  final Paint bottomLine;
+
+  void paintBottomLayer(Size size, Canvas canvas) {
     final path = Path();
-    path.moveTo(size.width, 0);
+    path.moveTo(size.width, size.height);
     path.lineTo(size.width, 0);
     path.lineTo(0, 0);
     path.lineTo(
       0,
-      lerpDouble(0, size.height, firstAnim.value),
+      lerpDouble(0, size.height, bottomAnim.value),
     );
     addPointsToPath(path, [
       Point(
-        lerpDouble(0, size.width / 3, firstAnim.value),
-        lerpDouble(0, size.height, firstAnim.value),
+        lerpDouble(0, size.width / 3, bottomAnim.value),
+        lerpDouble(0, size.height, bottomAnim.value),
       ),
       Point(
         lerpDouble(size.width / 2, size.width / 4 * 3, liquidAnim.value),
@@ -83,11 +89,11 @@ class BackgroundPainter extends CustomPainter {
         lerpDouble(size.height / 2, size.height * 3 / 4, liquidAnim.value),
       ),
     ]);
-    canvas.drawPath(path, firstPaint);
-    canvas.drawPath(path, secondLine);
+    canvas.drawPath(path, bottomPaint);
+    canvas.drawPath(path, bottomLine);
   }
 
-  void paintSecondLayer(Size size, Canvas canvas) {
+  void paintMiddleLayer(Size size, Canvas canvas) {
     final path = Path();
     path.moveTo(size.width, 0);
     path.lineTo(size.width, 0);
@@ -97,7 +103,7 @@ class BackgroundPainter extends CustomPainter {
       lerpDouble(
         size.height / 4,
         size.height / 2,
-        secondAnim.value,
+        middleAnim.value,
       ),
     );
     addPointsToPath(
@@ -113,28 +119,28 @@ class BackgroundPainter extends CustomPainter {
         ),
         Point(
           size.width * 4 / 5,
-          lerpDouble(size.height / 6, size.height / 3, secondAnim.value),
+          lerpDouble(size.height / 6, size.height / 3, middleAnim.value),
         ),
         Point(
           size.width,
-          lerpDouble(size.height / 5, size.height / 4, secondAnim.value),
+          lerpDouble(size.height / 5, size.height / 4, middleAnim.value),
         ),
       ],
     );
 
-    canvas.drawPath(path, secondPaint);
-    canvas.drawPath(path, firstLine);
+    canvas.drawPath(path, middlePaint);
+    canvas.drawPath(path, middleLine);
   }
 
-  void paintThirdLayer(Size size, Canvas canvas) {
-    if (thirdAnim.value > 0) {
+  void paintUpperLayer(Size size, Canvas canvas) {
+    if (upperAnim.value > 0) {
       final path = Path();
 
       path.moveTo(size.width * 3 / 4, 0);
       path.lineTo(0, 0);
       path.lineTo(
         0,
-        lerpDouble(0, size.height / 12, thirdAnim.value),
+        lerpDouble(0, size.height / 12, upperAnim.value),
       );
 
       addPointsToPath(path, [
@@ -156,18 +162,18 @@ class BackgroundPainter extends CustomPainter {
         ),
       ]);
 
-      canvas.drawPath(path, thirdPaint);
-      canvas.drawPath(path, secondLine);
+      canvas.drawPath(path, upperPaint);
+      canvas.drawPath(path, upperLine);
     }
   }
 
   @override
   void paint(Canvas canvas, Size size) {
-    paintFirstLayer(size, canvas);
+    paintBottomLayer(size, canvas);
 
-    paintSecondLayer(size, canvas);
+    paintMiddleLayer(size, canvas);
 
-    paintThirdLayer(size, canvas);
+    paintUpperLayer(size, canvas);
   }
 
   @override
