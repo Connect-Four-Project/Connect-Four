@@ -12,8 +12,8 @@ class BoardColumn extends StatelessWidget {
     for (int i = 0; i < Constants.ROWS; ++i) {
       columns.add(
         new Cell(
-            currentCellMode:
-                Controller.getInstance().getCellMode(i, colNumber)),
+          currentCellMode: Controller.getInstance().getCellMode(i, colNumber),
+        ),
       );
     }
     return columns;

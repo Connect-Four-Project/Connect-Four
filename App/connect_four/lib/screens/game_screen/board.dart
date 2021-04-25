@@ -1,4 +1,3 @@
-import 'package:connect_four/components/game_text_title.dart';
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/game_controller/controller.dart';
 import 'package:flutter/cupertino.dart';
@@ -79,7 +78,6 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
         fontSize: size.width * 0.075,
       ),
     );
-
   }
 
   @override
@@ -88,8 +86,6 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
     return AnimatedBuilder(
       animation: _animationController,
       builder: (BuildContext context, _) {
-
-
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [

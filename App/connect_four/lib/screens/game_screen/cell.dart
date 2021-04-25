@@ -30,10 +30,15 @@ class Cell extends StatelessWidget {
           height: 50,
           width: 50,
           color: Colors.blue[800],
-          child: Icon(
-            Icons.circle,
-            color: _setColor(),
-            size: 50,
+          child: AnimatedContainer(
+            margin: EdgeInsets.only(top: 5),
+            height: 35,
+            width: 35,
+            duration: Duration(milliseconds: 300),
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: _setColor(),
+            ),
           ),
         ),
       ],
