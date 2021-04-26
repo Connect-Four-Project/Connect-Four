@@ -3,6 +3,7 @@ import 'package:connect_four/components/already_have_an_account_acheck.dart';
 import 'package:connect_four/components/rounded_button.dart';
 import 'package:connect_four/components/rounded_input_field.dart';
 import 'package:connect_four/components/rounded_password_field.dart';
+import 'package:connect_four/components/game_text_title.dart';
 import 'package:connect_four/constants/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -19,24 +20,8 @@ class LoginBody extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "SIGN IN",
-              style: TextStyle(
-                shadows: [
-                  Shadow(
-                    color: Color(0xFF6F35A5),
-                    blurRadius: 10.0,
-                    offset: Offset(5.0, 5.0),
-                  ),
-                  Shadow(
-                    color: Color(0xFFF1E6FF),
-                    blurRadius: 10.0,
-                    offset: Offset(-5.0, 5.0),
-                  ),
-                ],
-                fontFamily: 'PressStart2P',
-                fontSize: size.width * 0.075,
-              ),
+            GameTextTitle(
+              title: "SIGN IN",
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
