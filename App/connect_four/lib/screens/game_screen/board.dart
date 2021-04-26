@@ -50,14 +50,14 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
         shadows: [
           Shadow(
             color: Controller.getInstance().isPlayerOneTurn()
-                ? Colors.amber
+                ? Colors.amber[800]
                 : Constants.PrimaryDarkColor,
             blurRadius: 2.0,
             offset: Offset(-3.0, 2.0),
           ),
         ],
         fontFamily: 'PressStart2P',
-        fontSize: size.width * 0.045,
+        fontSize: size.width * 0.085,
       ),
       child: Text(
         Controller.getInstance().isPlayerOneTurn()
