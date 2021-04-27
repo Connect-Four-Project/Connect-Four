@@ -1,5 +1,6 @@
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/game_controller/controller.dart';
+import 'package:connect_four/screens/win/win.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -32,9 +33,18 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
             });
 
             if (Controller.getInstance().gameOver) {
-              setState(() {
-                // display winning screen
-              });
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return win(
+                      winner: Controller.getInstance().isPlayerOneTurn()
+                          ? 'Player 2 Won'
+                          : 'Player 1 Won',
+                    );
+                  },
+                ),
+              );
             }
           },
           child: BoardColumn(
