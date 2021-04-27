@@ -48,8 +48,9 @@ class Controller {
   void resetGame() {
     _playerTurn = 0;
     gameOver = false;
-    for (int i = 0; i < Constants.ROWS; ++i) {
-      for (int j = 0; j < Constants.COLS; j++) {
+    for (int j = 0; j < Constants.COLS; j++) {
+      _lastRowCell[j] = Constants.ROWS - 1;
+      for (int i = 0; i < Constants.ROWS; ++i) {
         _cellMode[i][j] = CellMode.EMPTY;
       }
     }

@@ -32,7 +32,9 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
             });
 
             if (Controller.getInstance().gameOver) {
-              print("gameOver");
+              setState(() {
+                // display winning screen
+              });
             }
           },
           child: BoardColumn(
