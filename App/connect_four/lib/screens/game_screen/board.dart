@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/game_controller/controller.dart';
 import 'package:connect_four/screens/win/win.dart';
@@ -28,8 +30,11 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
       column.add(
         GestureDetector(
           onTap: () {
-            setState(() {
-              Controller.getInstance().playColumn(j);
+            Timer.periodic(Duration(milliseconds: 200), (timer) {
+              setState(() {
+                if (Controller.getInstance().drop(j))
+                  timer.cancel();
+              });
             });
 
             if (Controller.getInstance().gameOver) {
@@ -59,6 +64,7 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
   Widget getText(Size size) {
     return AnimatedDefaultTextStyle(
       duration: Duration(milliseconds: 500),
+      curve: Curves.easeOutSine,
       style: TextStyle(
         color: Controller.getInstance().isPlayerOneTurn()
             ? Colors.yellow

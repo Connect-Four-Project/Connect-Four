@@ -14,6 +14,7 @@ class Controller {
   bool gameOver;
   List<List<CellMode>> _cellMode;
   List<int> _lastRowCell;
+  List<int> _tmp;
 
   Controller._() {
     _playerTurn = 0;
@@ -21,6 +22,7 @@ class Controller {
     _cellMode = new List.generate(Constants.ROWS,
         (i) => List.generate(Constants.COLS, (j) => CellMode.EMPTY));
     _lastRowCell = new List.generate(Constants.COLS, (i) => Constants.ROWS - 1);
+    _tmp = new List.generate(Constants.COLS, (i) => 0);
   }
 
   void playColumn(int col) {
@@ -89,10 +91,24 @@ class Controller {
         r -= dr[i];
         c -= dc[i];
       }
-
       if (count >= 4) return true;
     }
-
     return false;
+  }
+
+  bool drop(int j) {
+    if (_lastRowCell[j] > _tmp[j]) {
+      int i = _tmp[j];
+
+      _cellMode[i][j] = CellMode.EMPTY;
+      ++i;
+      _tmp[j]++;
+      _cellMode[i][j] = _getPlayerCell();
+      return false;
+    } else {
+      _tmp[j] = 0;
+      playColumn(j);
+      return true;
+    }
   }
 }
