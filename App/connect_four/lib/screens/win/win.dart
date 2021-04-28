@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 class win extends StatelessWidget {
-  String winner;
+  String message;
 
-  win({this.winner});
+  win({this.message});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Text(
-        winner,
+        message,
       ),
     );
   }

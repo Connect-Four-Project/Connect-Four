@@ -28,24 +28,7 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
       column.add(
         GestureDetector(
           onTap: () {
-            setState(() {
-              Controller.getInstance().playColumn(j);
-            });
-
-            if (Controller.getInstance().gameOver) {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return win(
-                      winner: Controller.getInstance().isPlayerOneTurn()
-                          ? 'Player 2 Won'
-                          : 'Player 1 Won',
-                    );
-                  },
-                ),
-              );
-            }
+            Controller.getInstance().playColumn(j, setState, context);
           },
           child: BoardColumn(
             colNumber: j,
