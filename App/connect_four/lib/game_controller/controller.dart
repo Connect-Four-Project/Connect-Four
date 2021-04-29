@@ -104,10 +104,8 @@ class Controller {
         r -= dr[i];
         c -= dc[i];
       }
-
       if (count >= 4) return true;
     }
-
     return false;
   }
 }

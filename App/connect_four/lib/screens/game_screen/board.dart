@@ -42,6 +42,7 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
   Widget getText(Size size) {
     return AnimatedDefaultTextStyle(
       duration: Duration(milliseconds: 500),
+      curve: Curves.easeOutSine,
       style: TextStyle(
         color: Controller.getInstance().isPlayerOneTurn()
             ? Colors.yellow
