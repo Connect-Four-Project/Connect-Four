@@ -33,7 +33,7 @@ class Controller {
           if (row != 0) _cellMode[row - 1][col] = CellMode.EMPTY;
           _cellMode[row][col] = _getPlayerCell();
           if (row == _lastRowCell[col]) {
-            if (doesConnectFour(row, col)) {
+            if (_doesConnectFour(row, col)) {
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
@@ -79,17 +79,17 @@ class Controller {
     return _playerTurn == 0 ? true : false;
   }
 
-  bool isInsideBoard(int row, int col) {
+  bool _isInsideBoard(int row, int col) {
     return row >= 0 && row < Constants.ROWS && col >= 0 && col < Constants.COLS;
   }
 
-  bool doesConnectFour(int row, int col) {
+  bool _doesConnectFour(int row, int col) {
     var dr = [-1, -1, 0, 1];
     var dc = [0, 1, 1, 1];
     for (int i = 0; i < 4; i++) {
       int count = 0, r = row, c = col;
       while (
-          isInsideBoard(r, c) && getCellMode(row, col) == getCellMode(r, c)) {
+          _isInsideBoard(r, c) && getCellMode(row, col) == getCellMode(r, c)) {
         count++;
         r += dr[i];
         c += dc[i];
@@ -99,7 +99,7 @@ class Controller {
       c = col - dc[i];
 
       while (
-          isInsideBoard(r, c) && getCellMode(row, col) == getCellMode(r, c)) {
+          _isInsideBoard(r, c) && getCellMode(row, col) == getCellMode(r, c)) {
         count++;
         r -= dr[i];
         c -= dc[i];
