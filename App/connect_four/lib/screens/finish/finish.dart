@@ -5,10 +5,10 @@ import 'package:connect_four/screens/welcome/welcome_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class win extends StatelessWidget {
+class finish extends StatelessWidget {
   String message;
 
-  win({this.message});
+  finish({this.message});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,6 @@ class win extends StatelessWidget {
                 repeatForever: true,
               ),
             ),
-
             RoundedButton(
               text: "PLAY AGAIN ",
               press: () {
