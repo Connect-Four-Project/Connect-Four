@@ -1,6 +1,6 @@
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/screens/game_screen/cell.dart';
-import 'package:connect_four/screens/win/win.dart';
+import 'package:connect_four/screens/finish/finish.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
 
