@@ -12,6 +12,7 @@ class Finish extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Center(
         child: Column(
@@ -19,7 +20,10 @@ class Finish extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             DefaultTextStyle(
-              style: const TextStyle(fontSize: 60.0, fontFamily: "Nunito"),
+              style: TextStyle(
+                fontSize: size.width * 0.1,
+                fontFamily: "Nunito",
+              ),
               child: AnimatedTextKit(
                 animatedTexts: [
                   WavyAnimatedText(message),
