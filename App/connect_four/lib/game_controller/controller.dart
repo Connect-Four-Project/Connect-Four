@@ -14,6 +14,7 @@ class Controller {
     return _instance;
   }
 
+  bool _falling = false;
   int _playerTurn, _emptyCells;
   List<List<CellMode>> _cellMode;
   List<int> _lastRowCell;
@@ -26,41 +27,49 @@ class Controller {
     _lastRowCell = new List.generate(Constants.COLS, (i) => Constants.ROWS - 1);
   }
 
+  void _gameOver(String finishMessage, BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) {
+          return Finish(
+            message: finishMessage,
+          );
+        },
+      ),
+    );
+  }
+
+  void _onFinish(int col, BuildContext context) {
+    _falling = false;
+    _emptyCells--;
+
+    if (_doesConnectFour(_lastRowCell[col], col))
+      _gameOver(
+          _playerTurn == 0 ? 'PLAYER ONE WON' : 'PLAYER TWO WON', context);
+    else if (_emptyCells == 0) _gameOver("Draw", context);
+
+    _playerTurn = _playerTurn ^ 1;
+    _lastRowCell[col]--;
+  }
+
   void playColumn(int col, Function setState, BuildContext context) {
-    if (_lastRowCell[col] >= 0) {
-      _emptyCells--;
-      int row = 0;
-      Timer.periodic(Duration(milliseconds: 75), (timer) {
-        setState(() {
-          if (row != 0) _cellMode[row - 1][col] = CellMode.EMPTY;
-          _cellMode[row][col] = _getPlayerCell();
-          if (row == _lastRowCell[col]) {
-            String m = "";
+    if (_lastRowCell[col] < 0 || _falling) return;
 
-            if (_doesConnectFour(row, col))
-              m = _playerTurn == 0 ? 'PLAYER ONE WON' : 'PLAYER TWO WON';
-            else if (_emptyCells == 0) m = "DRAW";
+    _falling = true;
 
-            if (m != "") {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return finish(
-                      message: m,
-                    );
-                  },
-                ),
-              );
-            }
-            _playerTurn = _playerTurn ^ 1;
-            _lastRowCell[col]--;
-            timer.cancel();
-          }
-          row++;
-        });
+    int row = 0;
+    Timer.periodic(Duration(milliseconds: 75), (timer) {
+      setState(() {
+        if (row != 0) _cellMode[row - 1][col] = CellMode.EMPTY;
+        _cellMode[row][col] = _getPlayerCell();
+        if (row == _lastRowCell[col]) {
+          _onFinish(col, context);
+          timer.cancel();
+        }
+        row++;
       });
-    }
+    });
   }
 
   CellMode getCellMode(int row, int col) {

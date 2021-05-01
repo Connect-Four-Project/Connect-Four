@@ -5,10 +5,10 @@ import 'package:connect_four/screens/welcome/welcome_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class finish extends StatelessWidget {
+class Finish extends StatelessWidget {
   String message;
 
-  finish({this.message});
+  Finish({this.message});
 
   @override
   Widget build(BuildContext context) {
