@@ -1,10 +1,10 @@
 import 'package:connect_four/constants/constants.dart';
 import 'package:connect_four/game_controller/controller.dart';
-import 'package:connect_four/screens/finish/finish.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'board_style.dart';
 import 'column.dart';
 
 class Board extends StatefulWidget {
@@ -17,9 +17,22 @@ class Board extends StatefulWidget {
 }
 
 class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
+  AnimationController animationController;
+
   @override
   initState() {
     super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    animationController.forward();
+  }
+
+  @override
+  dispose() {
+    animationController.dispose(); // you need this
+    super.dispose();
   }
 
   List<Widget> _buildBoard() {
@@ -32,6 +45,7 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
           },
           child: BoardColumn(
             colNumber: j,
+            isGameOver: false,
           ),
         ),
       );
@@ -39,33 +53,7 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
     return column;
   }
 
-  Widget getText(Size size) {
-    return AnimatedDefaultTextStyle(
-      duration: Duration(milliseconds: 500),
-      curve: Curves.easeOutSine,
-      style: TextStyle(
-        color: Controller.getInstance().isPlayerOneTurn()
-            ? Colors.yellow
-            : Colors.red,
-        shadows: [
-          Shadow(
-            color: Controller.getInstance().isPlayerOneTurn()
-                ? Colors.amber[800]
-                : Constants.PrimaryDarkColor,
-            blurRadius: 2.0,
-            offset: Offset(-3.0, 2.0),
-          ),
-        ],
-        fontFamily: 'PressStart2P',
-        fontSize: size.width * 0.085,
-      ),
-      child: Text(
-        Controller.getInstance().isPlayerOneTurn()
-            ? 'PLAYER ONE'
-            : 'PLAYER TWO',
-      ),
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -73,38 +61,15 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        getText(size),
+     //   getText(size),
         Padding(
           padding: const EdgeInsets.only(top: 90),
-          child: Container(
-            margin: EdgeInsets.all(10),
-            padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                topLeft: Radius.circular(10),
-                topRight: Radius.circular(10),
-              ),
-              color: Colors.blue[800],
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.7),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3),
-                )
-              ],
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: _buildBoard(),
-                ),
-              ],
-            ),
-          ),
+          child: SlideTransition(
+              position: Tween<Offset>(
+                begin: Offset(0, 1),
+                end: Offset(0, 0),
+              ).animate(animationController),
+              child: BoardStyle(board: _buildBoard())),
         ),
       ],
     );
