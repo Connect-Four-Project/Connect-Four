@@ -46,7 +46,9 @@ class Finish extends StatelessWidget {
                 repeatForever: true,
               ),
             ),
+            SizedBox(height: size.width * 0.05),
             BoardStyle(board: finalBoardBuilder()),
+            SizedBox(height: size.width * 0.05),
             RoundedButton(
               text: "PLAY AGAIN ",
               press: () {
