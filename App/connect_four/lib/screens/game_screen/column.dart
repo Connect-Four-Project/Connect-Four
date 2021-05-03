@@ -4,8 +4,10 @@ import 'package:connect_four/game_controller/controller.dart';
 import 'package:flutter/material.dart';
 
 class BoardColumn extends StatelessWidget {
-  BoardColumn({Key key, @required this.colNumber}) : super(key: key);
+  BoardColumn({Key key, @required this.colNumber, @required this.isGameOver})
+      : super(key: key);
   final int colNumber;
+  final bool isGameOver;
 
   List<Cell> _buildColumnCells() {
     List<Cell> columns = <Cell>[];
@@ -13,6 +15,9 @@ class BoardColumn extends StatelessWidget {
       columns.add(
         new Cell(
           currentCellMode: Controller.getInstance().getCellMode(i, colNumber),
+          col: colNumber,
+          row: i,
+          isGameOver: isGameOver,
         ),
       );
     }
