@@ -53,7 +53,72 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
     return column;
   }
 
+  Widget getText2(Size size) {
+    return DefaultTextStyle(
+      key: UniqueKey(),
+      style: TextStyle(
+        color: Controller.getInstance().isPlayerOneTurn()
+            ? Colors.yellow
+            : Colors.red,
+        shadows: [
+          Shadow(
+            color: Controller.getInstance().isPlayerOneTurn()
+                ? Colors.amber[800]
+                : Constants.PrimaryDarkColor,
+            blurRadius: 2.0,
+            offset: Offset(-3.0, 2.0),
+          ),
+        ],
+        fontFamily: 'Nunito',
+        fontSize: size.width * 0.145,
+      ),
+      child: SlideTransition(
+        position: Tween<Offset>(
+          begin: Offset(0, -1),
+          end: Offset(0, 0),
+        ).animate(animationController),
+        child: Text(
+          Controller.getInstance().isPlayerOneTurn() ? 'ONE' : 'TWO',
+        ),
+      ),
+    );
+  }
 
+  Widget getText(Size size) {
+    return Row(
+      children: [
+        SizedBox(
+          width: size.width * 0.035,
+          height: 0,
+        ),
+        DefaultTextStyle(
+          style: TextStyle(
+            color: Colors.black,
+            shadows: [
+              Shadow(
+                color: Constants.PrimaryDarkColor,
+                blurRadius: 2.0,
+                offset: Offset(-3.0, 2.0),
+              ),
+            ],
+            fontFamily: 'Nunito',
+            fontSize: size.width * 0.135,
+          ),
+          child: Text(
+            'PLAYER',
+          ),
+        ),
+        SizedBox(
+          width: size.width * 0.035,
+          height: 0,
+        ),
+        AnimatedSwitcher(
+          duration: Duration(milliseconds: 500),
+          child: getText2(size),
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +126,7 @@ class _BoardState extends State<Board> with SingleTickerProviderStateMixin {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-     //   getText(size),
+        getText(size),
         Padding(
           padding: const EdgeInsets.only(top: 90),
           child: SlideTransition(
