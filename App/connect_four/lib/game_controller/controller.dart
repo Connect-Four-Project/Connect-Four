@@ -44,7 +44,7 @@ class Controller {
     _falling = false;
     _emptyCells--;
 
-    if (_doesConnectFour(_lastRowCell[col], col))
+    if (doesConnectFour(_lastRowCell[col], col))
       _gameOver(
           _playerTurn == 0 ? 'PLAYER ONE WON' : 'PLAYER TWO WON', context);
     else if (_emptyCells == 0) _gameOver("Draw", context);
@@ -100,7 +100,7 @@ class Controller {
     return row >= 0 && row < Constants.ROWS && col >= 0 && col < Constants.COLS;
   }
 
-  bool _doesConnectFour(int row, int col) {
+  bool doesConnectFour(int row, int col) {
     var dr = [-1, -1, 0, 1];
     var dc = [0, 1, 1, 1];
     for (int i = 0; i < 4; i++) {
